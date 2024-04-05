@@ -8,8 +8,17 @@ setHooksContext({
 });
 
 const queryClient = new QueryClient();
+let { data } = $props();
 </script>
 
 <QueryClientProvider client={queryClient}>
-  <slot />
+  <header>
+    {#if data.auth}
+      name = {data.auth.username};
+      <a class="bg-orange-500 text-white rounded p-2" href="/signout">signout</a>
+    {/if}
+  </header>
+  <main>
+    <slot />
+  </main>
 </QueryClientProvider>

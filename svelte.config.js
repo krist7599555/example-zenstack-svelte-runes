@@ -14,12 +14,7 @@ const config = {
     adapter: adapter(),
     alias: {
       $zenstack: '.zenstack',
-      '$zenstack/*': '.zenstack/*',
-      '$prisma-client': '.prisma-client',
-      '$prisma-client/*': '.prisma-client/*',
-      'prisma-client': 'node_modules/.prisma-client',
-      'prisma-client/*': 'node_modules/.prisma-client/*',
-      '.prisma/client': 'node_modules/.prisma/client'
+      '$zenstack/*': '.zenstack/*'
     }
   }
 };

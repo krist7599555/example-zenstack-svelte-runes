@@ -37,8 +37,15 @@ plugin tanstack {
 model Auth {
     id String @id @default(cuid())
     username String @unique
-    password String @password
-    @@allow('all', auth() != null)
+    password String @password @omit
+    role String @default("admin") // "admin" | "part-time" | "in-active" 
+    
+    @@auth
+    
+    @@allow('create', true)
+    @@allow('read', true)
+    @@allow('update', auth().role == "admin")
+    @@deny('delete', true)
 }
 
 model User {

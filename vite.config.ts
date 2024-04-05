@@ -6,7 +6,7 @@ export default defineConfig({
   plugins: [tailwindcss(), sveltekit()],
   server: {
     fs: {
-      allow: ['.zenstack', '.prisma-client']
+      allow: ['.zenstack']
     }
   },
   ssr: {
