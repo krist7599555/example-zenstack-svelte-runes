@@ -15,7 +15,11 @@ const metadata = {
                         },password: {
                             name: "password",
                             type: "String",
-                            attributes: [{"name":"@password","args":[]}],
+                            attributes: [{"name":"@password","args":[]},{"name":"@omit","args":[]}],
+                        },role: {
+                            name: "role",
+                            type: "String",
+                            attributes: [{"name":"@default","args":[{"value":"admin"}]}],
                         },
                 }
                 ,uniqueConstraints: {
@@ -28,7 +32,7 @@ const metadata = {
                                                 },
                 }
                 ,
-                attributes: [{"name":"@@allow","args":[{"value":"all"}]}],
+                attributes: [{"name":"@@auth","args":[]},{"name":"@@allow","args":[{"value":"create"},{"value":true}]},{"name":"@@allow","args":[{"value":"read"},{"value":true}]},{"name":"@@allow","args":[{"value":"update"}]},{"name":"@@deny","args":[{"value":"delete"},{"value":true}]}],
             }
             ,
             user: {
@@ -235,6 +239,6 @@ const metadata = {
         deleteCascade: {
         }
         ,
-        authModel: 'User'
+        authModel: 'Auth'
     };
 export default metadata;

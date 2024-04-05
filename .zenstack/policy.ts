@@ -1,29 +1,9 @@
 /* eslint-disable */
 import { type QueryContext, type CrudContract, allFieldsEqual, type PolicyDef } from "@zenstackhq/runtime";
 
-function Auth_create(context: QueryContext, db: CrudContract): any {
-    const user: any = context.user ?? null;
-    if ((user != null)) { return { AND: [] }; }return { OR: [] };
-}
-
-function Auth_create_input(input: any, context: QueryContext): boolean {
-    const user: any = context.user ?? null;
-    return (user != null)
-}
-
 function Auth_update(context: QueryContext, db: CrudContract): any {
     const user: any = context.user ?? null;
-    if ((user != null)) { return { AND: [] }; }return { OR: [] };
-}
-
-function Auth_read(context: QueryContext, db: CrudContract): any {
-    const user: any = context.user ?? null;
-    if ((user != null)) { return { AND: [] }; }return { OR: [] };
-}
-
-function Auth_delete(context: QueryContext, db: CrudContract): any {
-    const user: any = context.user ?? null;
-    if ((user != null)) { return { AND: [] }; }return { OR: [] };
+    if ((user?.role == 'admin')) { return { AND: [] }; }return { OR: [] };
 }
 
 function User_create(context: QueryContext, db: CrudContract): any {
@@ -129,7 +109,7 @@ function OrderItem_delete(context: QueryContext, db: CrudContract): any {
 const policy: PolicyDef = {
         guard:{
             auth:{
-                create: Auth_create,create_input: Auth_create_input,update: Auth_update,postUpdate: true,read: Auth_read,delete: Auth_delete,
+                create: true,create_input: true,update: Auth_update,postUpdate: true,read: true,delete: false,
             },user:{
                 create: User_create,create_input: User_create_input,update: User_update,postUpdate: true,read: User_read,delete: User_delete,
             },product:{
@@ -163,5 +143,7 @@ const policy: PolicyDef = {
             }
             ,
         }
+        ,
+        authSelector: {"role":true}
     };
 export default policy

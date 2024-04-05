@@ -4,13 +4,16 @@ const baseSchema = z.object({
     id: z.string(),
     username: z.string(),
     password: z.string(),
+    role: z.string().default("admin"),
 }
 );
 
 /**
  * `Auth` schema excluding foreign keys and relations.
  */
-export const AuthScalarSchema = baseSchema;
+export const AuthScalarSchema = baseSchema.omit({
+    password: true,
+});
 
 
 /**
@@ -33,7 +36,8 @@ export const AuthPrismaCreateSchema = baseSchema.partial().passthrough();
 export const AuthPrismaUpdateSchema = z.object({
     id: z.string(),
     username: z.string(),
-    password: z.string()
+    password: z.string(),
+    role: z.string()
 }).partial();
 
 
@@ -41,7 +45,7 @@ export const AuthPrismaUpdateSchema = z.object({
  * `Auth` schema for create operations excluding foreign keys and relations.
  */
 export const AuthCreateScalarSchema = baseSchema.partial({
-    id: true
+    id: true, role: true
 });
 
 
@@ -49,7 +53,7 @@ export const AuthCreateScalarSchema = baseSchema.partial({
  * `Auth` schema for create operations including scalar fields, foreign key fields, and validations.
  */
 export const AuthCreateSchema = baseSchema.partial({
-    id: true
+    id: true, role: true
 });
 
 

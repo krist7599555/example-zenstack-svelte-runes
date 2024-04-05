@@ -14,6 +14,10 @@ const metadata = {
                 }, password: {
                     name: "password",
                     type: "String",
+                }, role: {
+                    name: "role",
+                    type: "String",
+                    attributes: [{ "name": "@default", "args": [{ "value": "admin" }] }],
                 },
             }
             , uniqueConstraints: {
@@ -224,6 +228,6 @@ const metadata = {
     deleteCascade: {
     }
     ,
-    authModel: 'User'
+    authModel: 'Auth'
 };
 export default metadata;

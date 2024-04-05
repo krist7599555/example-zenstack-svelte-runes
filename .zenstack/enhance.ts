@@ -9,11 +9,11 @@ import type * as _P from '@prisma-app/client';
 
 namespace auth {
     type WithRequired<T, K extends keyof T> = T & { [P in K]-?: T[P] };
-    export type User = WithRequired<Partial<_P.User>, 'id'>;
+    export type Auth = WithRequired<Partial<_P.Auth>, 'id'|'role'>;
 }
 
 
-export function enhance<DbClient extends object>(prisma: DbClient, context?: EnhancementContext<auth.User>, options?: EnhancementOptions) {
+export function enhance<DbClient extends object>(prisma: DbClient, context?: EnhancementContext<auth.Auth>, options?: EnhancementOptions) {
     return createEnhancement(prisma, {
         modelMeta,
         policy,

@@ -1,4 +1,4 @@
 /* eslint-disable */
 import { z } from 'zod';
 
-export const AuthScalarFieldEnumSchema = z.enum(["id", "username", "password"])
+export const AuthScalarFieldEnumSchema = z.enum(["id", "username", "password", "role"])
